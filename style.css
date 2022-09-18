@@ -1,0 +1,24 @@
+/* body {
+  text-align: center;
+} */
+
+.hide {
+  display: none;
+}
+
+/* .back {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+} */
+
+/* .deliveryForm label {
+  margin-right: 40px;
+  text-align: left;
+  width: 300px;
+} */
+
+.question {
+  display: inline-block;
+  width: 120px;
+}
