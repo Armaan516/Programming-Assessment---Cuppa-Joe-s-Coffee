@@ -1,16 +1,26 @@
-// Startup Menu variables
+// Startup menu variables
 let startBtns = document.getElementById("startBtns");
 let pickupBtn = document.getElementById("pickupBtn");
 let deliveryBtn = document.getElementById("deliveryBtn");
 let error = document.getElementById("error");
 
 // Pickup and delivery variables
+let pickupOrDelivery = document.getElementById("pickupOrDelivery");
 let pickup = document.getElementById("pickup");
 let delivery = document.getElementById("delivery");
 let pickupName = document.getElementById("pickupName");
 let deliveryName = document.getElementById("deliveryName");
 let address = document.getElementById("address");
 let phone = document.getElementById("phone");
+
+// Coffees required variables
+let coffeesRequired = document.getElementById("coffeesRequired");
+let coffeeNo = document.getElementById("coffeeNo");
+
+// Coffee variables
+let coffeeSelection = document.getElementById("coffeeSelection");
+let coffeeDisplay = document.getElementById("coffeeDisplay");
+let coffeeOptions = ["Cappuccino", "Flat White", "Hot Mocha"];
 
 // Other variables
 let totalCost = 0;
@@ -32,16 +42,27 @@ function checkEmptyTextEntries(userInput, errorText) {
   } else return userInput;
 }
 
+function checkNumberEntries(userInput, minValue, maxValue) {
+  let errorMessage = "";
+  // If input is not a number or negative then display error message and function returns false
+  if (isNaN(userInput) || userInput < minValue || userInput > maxValue) {
+    errorMessage = `Please enter a number of coffees between ${minValue} and ${maxValue}`;
+    error.innerHTML = errorMessage;
+    return false;
+  } else return userInput;
+}
+
 // Runs when the pickup button is clicked
 pickup.addEventListener("submit", function (e) {
   e.preventDefault(); // prevents data from being sent elsewhere
   error.innerHTML = ""; //resets error message
   // Function is run to check for empty input, if so then an error message is outputted and the user has to resubmit their answer
   let nameEntered = pickupName.value;
-  nameEntered = checkEmptyTextEntries(nameEntered, "Please enter your name");
+  nameEntered = checkEmptyTextEntries(nameEntered, "Please enter the name");
   if (!nameEntered) {
     return;
   }
+  changeSection(pickup, coffeesRequired);
 })
 
 // Runs when the delivery button is clicked
@@ -50,24 +71,51 @@ delivery.addEventListener("submit", function (e) {
   error.innerHTML = "";
   // Validating to make sure name input is not empty
   let nameEntered = deliveryName.value;
-  nameEntered = checkEmptyTextEntries(nameEntered, "Please enter your name");
+  nameEntered = checkEmptyTextEntries(nameEntered, "Please enter the name");
   if (!nameEntered) {
     return;
   }
   // Validating to make sure address input is not empty
   let addressEntered = address.value;
-  addressEntered = checkEmptyTextEntries(addressEntered, "Please enter your address");
+  addressEntered = checkEmptyTextEntries(addressEntered, "Please enter the address");
   if (!addressEntered) {
     return;
   }
   // Validating to make sure phone number input is not empty
   let phoneEntered = phone.value;
-  phoneEntered = checkEmptyTextEntries(phoneEntered, "Please enter your phone number");
+  phoneEntered = checkEmptyTextEntries(phoneEntered, "Please enter the phone number");
   if (!phoneEntered) {
     return;
   }
   totalCost+=5;
+  changeSection(delivery, coffeesRequired);
 })
+
+coffeesRequired.addEventListener("submit", function (e) {
+  e.preventDefault();
+  error.innerHTML = ""; //resets error message
+  // Checking for empty input, error displayed if empty
+  let coffeeNumber = coffeeNo.value;
+  coffeeNumber = checkEmptyTextEntries(coffeeNumber, "Please enter the number of coffees ordered");
+  if (!coffeeNumber) {
+    return;
+  }
+  // Checking for invalid number input, error displayed if invalid
+  coffeeNumber = checkNumberEntries(coffeeNumber, 1, 10);
+  if (!coffeeNumber) {
+    return;
+  }
+  changeSection(coffeesRequired, pickupOrDelivery);
+})
+
+pickupOrDelivery.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  coffeeOptions.forEach(coffee => {
+    coffeeDisplay.innerHTML += `<div class="coffeeCard"><h3>${coffee}</h3></div>`;
+  })
+})
+
 
 
 
