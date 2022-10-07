@@ -10,6 +10,7 @@
   <body>
     <main>
       <h1>Cuppa Joe's Coffee</h1>
+
       <!-- Buttons on the startup menu which lead to either pickup or delivery options -->
       <div id="startBtns">
         <p>Would the customer like to pickup or have their coffee delivered?</p>
@@ -20,6 +21,7 @@
           Delivery
         </button>
       </div>
+
       <div id="pickupOrDelivery">
         <!-- Clicking on pickup asks for the user's name and then proceeds onto the next section -->
         <div id="pickup" class="hide">
@@ -49,6 +51,7 @@
         </div>
       </div>
 
+      <!-- Asks user how many coffees the customer would like and then proceeds to the next section-->
       <div id="coffeesRequired" class="hide">
         <form>
           <label for="coffeeNo"
@@ -59,6 +62,7 @@
         </form>
       </div>
 
+      <!-- Allows the user to pick the coffees requested by the customer with their requested sizes -->
       <div id="coffeeSelection" class="hide">
         <h2>Select Coffees</h2>
         <p id="introText"></p>
@@ -67,28 +71,24 @@
             <th>Coffee</th>
             <th>Size</th>
           </tr>
-          <!-- <tr>
-            <td>
-              <select id="coffeeDisplay" onchange="favTutorial()">
-                <option>None</option>
-              </select>
-            </td>
-            <td>
-              <select onchange="favTutorial()">
-                <option>Regular</option>
-                <option>Medium</option>
-                <option>Large</option>
-              </select>
-            </td>
-            <td></td>
-            <td><button class="remove">X</button></td>
-          </tr> -->
         </table>
         <br /><br />
-        <button>Submit</button>
+        <form><button type="submit">Submit</button></form>
       </div>
 
-      <div id="orderDisplay" class="hide"></div>
+      <!-- Displays a final reciept of sorts with the coffees selected, their size, and total cost-->
+      <div id="orderDisplay" class="hide">
+        <h2>Order</h2>
+        <div id="userInfoOutput"></div>
+        <table id="orderDisplayTable"></table>
+        <br /><br />
+        <button onclick="changeSection(orderDisplay, coffeeSelection)">
+          Change Order
+        </button>
+        <button>
+          <a href="armaan_singh_cuppajoescoffee.html">Submit Order</a>
+        </button>
+      </div>
 
       <!-- Display area for the error message -->
       <p id="error"></p>

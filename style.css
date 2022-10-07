@@ -58,23 +58,3 @@ th {
 td {
   padding: 10px 0 15px 0;
 }
-
-/* .coffeeMenu {
-  display: flex;
-  gap: 5%;
-}
-
-#coffeeDisplay {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.coffeeCard {
-  width: 100px;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 30px;
-  margin-top: 10px;
-  margin-right: 10px;
-} */
