@@ -8,73 +8,70 @@
     <title>Cuppa Joe's Coffee</title>
   </head>
   <body>
-    <h1>Cuppa Joe's Coffee</h1>
-    <!-- Buttons on the startup menu which lead to either pickup or delivery options -->
-    <div id="startBtns">
-      <p>Would you like to pickup your coffee or have it delivered?</p>
-      <button id="pickupBtn" onclick="changeSection(startBtns, pickup)">
-        Pickup
-      </button>
-      <button id="deliveryBtn" onclick="changeSection(startBtns, delivery)">
-        Delivery (+$5 delivery fee)
-      </button>
-    </div>
-    <div id="pickupOrDelivery">
-      <!-- Clicking on pickup asks for the user's name and then proceeds onto the next section -->
-      <div id="pickup" class="hide">
-        <!-- Allows user to go back to the previous section-->
-        <button class="back" onclick="changeSection(pickup, startBtns)">
-          &lt Back
+    <main>
+      <h1>Cuppa Joe's Coffee</h1>
+      <!-- Buttons on the startup menu which lead to either pickup or delivery options -->
+      <div id="startBtns">
+        <p>Would the customer like to pickup or have their coffee delivered?</p>
+        <button id="pickupBtn" onclick="changeSection(startBtns, pickup)">
+          Pickup
         </button>
-        <br />
-        <h2>Pickup</h2>
-        <p>Enter the customer details below</p>
+        <button id="deliveryBtn" onclick="changeSection(startBtns, delivery)">
+          Delivery
+        </button>
+      </div>
+      <div id="pickupOrDelivery">
+        <!-- Clicking on pickup asks for the user's name and then proceeds onto the next section -->
+        <div id="pickup" class="hide">
+          <!-- Allows user to go back to the previous section-->
+          <h2>Pickup</h2>
+          <p>Enter the customer details below</p>
+          <form>
+            <label for="pickupName">Name:</label>
+            <input type="text" id="pickupName" /><br /><br /><br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <!-- Clicking on delivery asks for the user's name, address, and phone number, and then proceeds onto the next section -->
+        <div id="delivery" class="hide">
+          <h2>Delivery (+$5 delivery fee)</h2>
+          <p>Enter the customer details below</p>
+          <form class="deliveryForm">
+            <label for="deliveryName" class="question">Name:</label>
+            <input type="text" id="deliveryName" /><br /><br />
+            <label for="address" class="question">Address:</label>
+            <input type="text" id="address" /><br /><br />
+            <label for="phone" class="question">Phone Number:</label>
+            <input type="text" id="phone" /><br /><br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="coffeesRequired" class="hide">
         <form>
-          <label for="pickupName">Name:</label>
-          <input type="text" id="pickupName" /><br /><br />
+          <label for="coffeeNo"
+            >How many coffees would the customer like?</label
+          >
+          <input type="number" id="coffeeNo" /><br /><br />
           <button type="submit">Submit</button>
         </form>
       </div>
 
-      <!-- Clicking on delivery asks for the user's name, address, and phone number, and then proceeds onto the next section -->
-      <div id="delivery" class="hide">
-        <button class="back" onclick="changeSection(delivery, startBtns)">
-          &lt Back
-        </button>
-        <h2>Delivery (+$5 delivery fee)</h2>
-        <p>Enter the customer details below</p>
-        <form class="deliveryForm">
-          <label for="deliveryName" class="question">Name:</label>
-          <input type="text" id="deliveryName" /><br /><br />
-          <label for="address" class="question">Address:</label>
-          <input type="text" id="address" /><br /><br />
-          <label for="phone" class="question">Phone Number:</label>
-          <input type="text" id="phone" /><br /><br />
-          <button type="submit">Submit</button>
-        </form>
+      <div id="coffeeSelection" class="hide">
+        <div id="coffeeDisplay"></div>
       </div>
-    </div>
 
-    <div id="coffeesRequired" class="hide">
-      <form>
-        <label for="coffeeNo">How many coffees would the customer like?</label>
-        <input type="number" id="coffeeNo" /><br /><br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <!-- Display area for the error message -->
+      <p id="error"></p>
+      <br />
 
-    <div id="coffeeSelection" class="hide">
-      <div id="coffeeDisplay"></div>
-    </div>
-
-    <!-- Display area for the error message -->
-    <p id="error"></p>
-    <br />
-
-    <!-- Cancel order button restarts the program -->
-    <button>
-      <a href="armaan_singh_cuppajoescoffee.html">Cancel Order</a>
-    </button>
+      <!-- Cancel order button restarts the program -->
+      <button>
+        <a href="armaan_singh_cuppajoescoffee.html">Cancel Order</a>
+      </button>
+    </main>
 
     <script src="script.js"></script>
   </body>

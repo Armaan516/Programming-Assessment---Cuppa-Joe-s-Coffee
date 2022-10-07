@@ -20,7 +20,20 @@ let coffeeNo = document.getElementById("coffeeNo");
 // Coffee variables
 let coffeeSelection = document.getElementById("coffeeSelection");
 let coffeeDisplay = document.getElementById("coffeeDisplay");
-let coffeeOptions = ["Cappuccino", "Flat White", "Hot Mocha"];
+const COFFEES = [
+  "Cappuccino", 
+  "Flat White", 
+  "Hot Mocha", 
+  "Café Latte", 
+  "Macchiato", 
+  "White Choc Mocha", 
+  "Chai Latte", 
+  "Vanilla Latte", 
+  "Long Black", 
+  "Caramel Latte", 
+  "Short Black", 
+  "Piccolo Latte"
+];
 
 // Other variables
 let totalCost = 0;
@@ -87,7 +100,7 @@ delivery.addEventListener("submit", function (e) {
   if (!phoneEntered) {
     return;
   }
-  totalCost+=5;
+  totalCost += 5;
   changeSection(delivery, coffeesRequired);
 })
 
@@ -105,14 +118,14 @@ coffeesRequired.addEventListener("submit", function (e) {
   if (!coffeeNumber) {
     return;
   }
-  changeSection(coffeesRequired, pickupOrDelivery);
+  changeSection(coffeesRequired, coffeeSelection);
 })
 
 pickupOrDelivery.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  coffeeOptions.forEach(coffee => {
-    coffeeDisplay.innerHTML += `<div class="coffeeCard"><h3>${coffee}</h3></div>`;
+  COFFEES.forEach(coffee => {
+    coffeeDisplay.innerHTML += `<div class="coffeeCard"><h5>${coffee}</h5></div>`;
   })
 })
 
