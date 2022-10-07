@@ -14,10 +14,11 @@ let address = document.getElementById("address");
 let phone = document.getElementById("phone");
 
 // Coffees required variables
+let introText = document.getElementById("introText");
 let coffeesRequired = document.getElementById("coffeesRequired");
 let coffeeNo = document.getElementById("coffeeNo");
 
-// Coffee variables
+// Coffee Selection variables
 let coffeeSelection = document.getElementById("coffeeSelection");
 let coffeeDisplay = document.getElementById("coffeeDisplay");
 const COFFEES = [
@@ -34,9 +35,21 @@ const COFFEES = [
   "Short Black", 
   "Piccolo Latte"
 ];
+const regular = 5.50;
+const medium = regular+1;
+const large = regular+2;
+
+// Order Display variables 
+let orderDisplay = document.getElementById("orderDisplay");
 
 // Other variables
+let coffeeNumber = 0;
 let totalCost = 0;
+let coffeeDropdown = "";
+
+for (let i = 0; i < COFFEES.length; i++) {
+  coffeeDropdown += `<option value = "${i}">${COFFEES[i]}</option>`;
+}
 
 // Function hides previous section and shows new section
 function changeSection(hide, show) {
@@ -63,6 +76,25 @@ function checkNumberEntries(userInput, minValue, maxValue) {
     error.innerHTML = errorMessage;
     return false;
   } else return userInput;
+}
+
+function coffeeRow(i) {
+  let row = `<tr id="row${i}">
+    <td>
+      <select id="coffee${i}">
+        <option value="none">None</option>
+        ${coffeeDropdown}
+      </select>
+    </td>
+    <td>
+      <select id="size${i}">
+        <option value="regular">Regular</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+    </td>
+  </tr>`;
+  return row;
 }
 
 // Runs when the pickup button is clicked
@@ -108,7 +140,7 @@ coffeesRequired.addEventListener("submit", function (e) {
   e.preventDefault();
   error.innerHTML = ""; //resets error message
   // Checking for empty input, error displayed if empty
-  let coffeeNumber = coffeeNo.value;
+  coffeeNumber = coffeeNo.value;
   coffeeNumber = checkEmptyTextEntries(coffeeNumber, "Please enter the number of coffees ordered");
   if (!coffeeNumber) {
     return;
@@ -118,17 +150,33 @@ coffeesRequired.addEventListener("submit", function (e) {
   if (!coffeeNumber) {
     return;
   }
+
+  introText.innerHTML = `Prices:<br>
+    Regular - $${regular.toFixed(2)}<br>
+    Medium - $${medium.toFixed(2)}<br>
+    Large - $${large.toFixed(2)}`;
+
+  for (let i = 1; i <= coffeeNumber; i++) {
+    let row = coffeeRow(i);
+    coffeeDisplay.innerHTML += row;
+  }
+
   changeSection(coffeesRequired, coffeeSelection);
 })
 
-pickupOrDelivery.addEventListener("submit", function (e) {
+coffeeSelection.addEventListener("click", function (e) {
   e.preventDefault();
 
-  COFFEES.forEach(coffee => {
-    coffeeDisplay.innerHTML += `<div class="coffeeCard"><h5>${coffee}</h5></div>`;
-  })
+  for (let i = 1; i <= coffeeNumber; i++) {
+    let coffeeSelection = document.getElementById(`coffee${i}`);
+    error.innerHTML = "";
+
+    if (coffeeSelection.value == "none") {
+      error.innerHTML = "Please finish selecting all the coffees";
+      return;
+    }
+  }
+
+  changeSection(coffeeSelection, orderDisplay);
 })
-
-
-
 

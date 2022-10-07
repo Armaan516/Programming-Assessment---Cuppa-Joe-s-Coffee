@@ -60,8 +60,35 @@
       </div>
 
       <div id="coffeeSelection" class="hide">
-        <div id="coffeeDisplay"></div>
+        <h2>Select Coffees</h2>
+        <p id="introText"></p>
+        <table id="coffeeDisplay">
+          <tr>
+            <th>Coffee</th>
+            <th>Size</th>
+          </tr>
+          <!-- <tr>
+            <td>
+              <select id="coffeeDisplay" onchange="favTutorial()">
+                <option>None</option>
+              </select>
+            </td>
+            <td>
+              <select onchange="favTutorial()">
+                <option>Regular</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </td>
+            <td></td>
+            <td><button class="remove">X</button></td>
+          </tr> -->
+        </table>
+        <br /><br />
+        <button>Submit</button>
       </div>
+
+      <div id="orderDisplay" class="hide"></div>
 
       <!-- Display area for the error message -->
       <p id="error"></p>
